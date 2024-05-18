@@ -1,48 +1,43 @@
 import React from 'react';
-import {StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
-const Card = ({card_text, card_image}) => {
+export default function Card({ card_text, card_image, card_color }) {
 
-var fileurl = "./src/img/"+card_image
-var image = Asset.fromModule(require(fileurl)).uri;
+    const styles = StyleSheet.create({
+        image: {
+            width: '100%',
+            height: 100,
+            borderRadius: 10
+        },
+        card: {
+            backgroundColor: card_color, // Usar el color pasado como prop
+            height: 150,
+            width: 110,
+            borderRadius: 10,
+            padding: 5,
+            alignItems: 'center',
+            marginBottom: 5
+        },
+        cardText: {
+            color: '#292929',
+            fontWeight: '500'
+        },
+        cardTextContainer: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
+        }
+    });
 
-    return ( 
+    return (
         <View style={styles.card}>
-
             <Image
-            style={styles.image}
-            source={{ uri: image }}></Image>
+                style={styles.image}
+                source={{ uri: card_image }}></Image>
 
             <View style={styles.cardTextContainer}>
-                <Text style={styles.cardText}>card_text</Text>
+                <Text style={styles.cardText}>{card_text}</Text>
             </View>
         </View>
-     );
+    );
 }
- 
-export default Card;
-
-
-const styles = StyleSheet.create({
-    image: {
-        width: '100%',
-        height: 100,
-        borderRadius: 10
-      },
-      card:{
-        backgroundColor: "#00ff00",
-        height: 170,
-        width: '31%',
-        borderRadius: 10,
-        padding: 5,
-        alignItems: 'center',
-      },
-      cardText: {
-        color: 'white'
-      },
-      cardTextContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-      }
-});
